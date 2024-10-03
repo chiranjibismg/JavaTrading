@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coins ")
+@RequestMapping("/coins")
 public class CoinController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class CoinController {
     private ObjectMapper objectMapper  ;
 
     @GetMapping("")
-    ResponseEntity<List<Coin>> getCoinList (@RequestParam("page") int page) throws Exception {
+    ResponseEntity<List<Coin>> getCoinList (@RequestParam(required = false,name="page") int page) throws Exception {
 
         List<Coin> coins=coinService.getCoinList(page);
 
