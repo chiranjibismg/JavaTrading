@@ -4,9 +4,11 @@ package com.Chiranjibi.JavaTrading.controller;
 import com.Chiranjibi.JavaTrading.domain.WalletTransactionType;
 import com.Chiranjibi.JavaTrading.models.User;
 import com.Chiranjibi.JavaTrading.models.Wallet;
+import com.Chiranjibi.JavaTrading.models.WalletTransaction;
 import com.Chiranjibi.JavaTrading.models.Withdrawal;
 import com.Chiranjibi.JavaTrading.service.UserService;
 import com.Chiranjibi.JavaTrading.service.WalletService;
+import com.Chiranjibi.JavaTrading.service.WalletTransactionService;
 import com.Chiranjibi.JavaTrading.service.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +29,8 @@ public class WithdrawalController {
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private WalletTransactionService walletTransactionService;
+    @Autowired
+    private WalletTransactionService walletTransactionService;
 
     @PostMapping("/api/withdrawal/{amount}")
     public ResponseEntity<?> withdrawalRequest(
@@ -40,12 +42,12 @@ public class WithdrawalController {
         Withdrawal withdrawal=withdrawalService.requestWithdrawal(amount,user);
         walletService.addBalance(userWallet, -withdrawal.getAmount());
 
-//        WalletTransaction walletTransaction = walletTransactionService.createTransaction(
-//                userWallet,
-//                WalletTransactionType.WITHDRAWAL,null,
-//                "bank account withdrawal",
-//                withdrawal.getAmount()
-//        );
+        WalletTransaction walletTransaction = walletTransactionService.createTransaction(
+                userWallet,
+                WalletTransactionType.WITHDRAWAL,null,
+                "Bank account withdrawal",
+                withdrawal.getAmount()
+        );
 
         return new ResponseEntity<>(withdrawal, HttpStatus.OK);
     }

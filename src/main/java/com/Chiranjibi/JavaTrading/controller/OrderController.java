@@ -9,6 +9,7 @@ import com.Chiranjibi.JavaTrading.request.CreateOrderRequest;
 import com.Chiranjibi.JavaTrading.service.CoinService;
 import com.Chiranjibi.JavaTrading.service.OrderService;
 import com.Chiranjibi.JavaTrading.service.UserService;
+import com.Chiranjibi.JavaTrading.service.WalletTransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,15 +31,10 @@ public class OrderController {
     @Autowired
     private CoinService coinService;
 
-//    @Autowired
-//    private WalletTransactionService walletTransactionService;
+    @Autowired
+    private WalletTransactionService walletTransactionService;
 
 
-//    @Autowired
-//    public OrderController(OrderService orderService, UserService userSerivce) {
-//        this.orderService = orderService;
-//        this.userSerivce=userSerivce;
-//    }
 
     @PostMapping("/pay")
     public ResponseEntity<Orders> payOrderPayment(

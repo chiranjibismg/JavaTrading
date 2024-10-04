@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-public class WalletTranscation {
+public class WalletTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

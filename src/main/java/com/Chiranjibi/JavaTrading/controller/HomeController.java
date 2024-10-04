@@ -1,5 +1,8 @@
 package com.Chiranjibi.JavaTrading.controller;
 
+import com.Chiranjibi.JavaTrading.response.ApiResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,13 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping
-    public String home() {
-        return "this is home page" ;
-    }
+    @GetMapping("")
+    public ResponseEntity<ApiResponse> homeController(){
 
-    @GetMapping("/api")
-    public String secret() {
-        return "this is home page" ;
+
+        ApiResponse res=new ApiResponse("welcome to crypto treading platform working fine", true);
+        return new ResponseEntity<ApiResponse>(res, HttpStatus.ACCEPTED);
     }
 }
